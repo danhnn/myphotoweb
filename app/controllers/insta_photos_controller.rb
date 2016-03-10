@@ -4,7 +4,7 @@ class InstaPhotosController < ApplicationController
   # GET /insta_photos
   # GET /insta_photos.json
   def index
-    @insta_photos = InstaPhoto.all
+    @insta_photos = InstaPhoto.all.page(params[:page])
   end
 
   # GET /insta_photos/1
@@ -24,6 +24,10 @@ class InstaPhotosController < ApplicationController
   # POST /insta_photos
   # POST /insta_photos.json
   def create
+    uploader = AvatarUploader.new
+    a = uploader.store!(params[:url])
+    uploader.retrieve_from_store!('my_file.png')
+
     @insta_photo = InstaPhoto.new(insta_photo_params)
 
     respond_to do |format|

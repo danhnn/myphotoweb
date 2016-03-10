@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title"><%= insta_photo.username %></h4>
+    <h6 class="card-subtitle text-muted"><%= insta_photo.likes_count %> likes</h6>
+  </div>
+  <%= link_to insta_photo_path(insta_photo) do %>
+      <%= image_tag(insta_photo.url) %>
+  <% end %>
+  <div class="card-block">
+    <p class="card-text"><%= insta_photo.caption %></p>
+    <%= link_to 'Edit', edit_insta_photo_path(insta_photo), class: 'btn btn-secondary' %>
+    <%= link_to 'Destroy', insta_photo, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+  </div>
+</div>
